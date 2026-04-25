@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajude o Felipe a Não Dormir no Chão</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Animações */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    @keyframes expandBar {
+      from {
+        width: var(--prev-width);
+      }
+      to {
+        width: var(--new-width);
+      }
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      text-align: center;
+      padding: 40px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h1 {
+      color: white;
+      font-size: 2.5em;
+      margin-bottom: 40px;
+      animation: fadeInDown 0.8s ease;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+      letter-spacing: 1px;
+    }
+
+    .card {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 20px;
+      max-width: 550px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      animation: fadeInUp 0.8s ease 0.2s backwards;
+      border: 2px solid rgba(102, 126, 234, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .card p {
+      font-size: 1.1em;
+      color: #333;
+      line-height: 1.8;
+      margin-bottom: 15px;
+      animation: fadeInUp 0.8s ease 0.4s backwards;
+    }
+
+    .card h3 {
+      color: #667eea;
+      margin: 25px 0 20px 0;
+      font-size: 1.5em;
+      animation: fadeInUp 0.8s ease 0.6s backwards;
+    }
+
+    .progress {
+      background: #f0f0f0;
+      border-radius: 15px;
+      overflow: hidden;
+      margin: 25px 0;
+      height: 40px;
+      animation: fadeInUp 0.8s ease 0.8s backwards;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .progress-bar {
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      width: 32%;
+      height: 100%;
+      padding: 10px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 0.95em;
+      animation: slideInRight 1s ease 1s backwards;
+      box-shadow: 0 0 10px rgba(102, 126, 234, 0.4);
+      transition: width 0.6s ease;
+    }
+
+    button {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 15px 40px;
+      font-size: 1.1em;
+      font-weight: 600;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      animation: scaleIn 0.6s ease 1s backwards;
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+      animation: pulse 0.6s ease infinite;
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    #msg {
+      margin-top: 20px;
+      font-size: 1.1em;
+      font-weight: 600;
+      color: #764ba2;
+      animation: fadeInUp 0.5s ease;
+      min-height: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🚨 URGENTE: O Felipe precisa dormir, ajude o Felipe a descansar no horário de descanso no trabalho 🚨</h1>
+
+  <div class="card">
+    <p>
+      Nosso amigo Felipe está enfrentando um grande problema:
+      <strong>Devido a falta do Puff, ele não tem uma barraca pra descansar no horário de almoço</strong>.
+    </p>
+
+    <p>
+      Atualmente ele está:
+      <br>❌ Dormindo no chão  
+      <br>❌ Sendo atacado por mosquitos  
+      <br>❌ Virando meme
+    </p>
+
+    <h3>Meta: R$150 para uma barraca digna 🏕️</h3>
+
+    <div class="progress">
+      <div class="progress-bar">R$48 arrecadados</div>
+    </div>
+
+    <button onclick="doar()">💰 Doar Agora</button>
+
+    <p id="msg"></p>
+  </div>
+
+  <script>
+    let totalArrecadado = 48;
+    const meta = 150;
+
+    function doar() {
+      const mensagens = [
+        "Felipe agradece com lágrimas 🥲",
+        "Um mosquito foi evitado! 🦟❌",
+        "Você salvou uma noite de sono 😴",
+        "A barraca está mais próxima! 🏕️",
+        "Felipe promete não esquecer isso... talvez 🤔",
+        "Que generosidade! 💝",
+        "Felipe dorme melhor agora! 😴✨"
+      ];
+
+      // Gera doação aleatória entre R$10 e R$30
+      const doacao = Math.floor(Math.random() * 20) + 10;
+      totalArrecadado += doacao;
+
+      // Limite máximo na meta
+      if (totalArrecadado > meta) {
+        totalArrecadado = meta;
+      }
+
+      // Calcula porcentagem
+      const porcentagem = (totalArrecadado / meta) * 100;
+
+      // Atualiza a barra de progresso
+      const progressBar = document.querySelector('.progress-bar');
+      progressBar.style.width = porcentagem + '%';
+      progressBar.innerText = `R$${totalArrecadado} arrecadados`;
+
+      // Mostra mensagem aleatória
+      const msg = mensagens[Math.floor(Math.random() * mensagens.length)];
+      document.getElementById("msg").innerText = msg;
+
+      // Celebração se completou
+      if (totalArrecadado >= meta) {
+        document.getElementById("msg").innerText = "🎉 META ATINGIDA! Felipe tem sua barraca! 🏕️✨";
+        document.getElementById("msg").style.color = "#27ae60";
+        document.querySelector('button').disabled = true;
+        document.querySelector('button').style.opacity = '0.5';
+      }
+    }
+  </script>
+
+</body>
+</html>
